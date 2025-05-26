@@ -1,0 +1,103 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: white;
+}
+
+.calculator {
+    height: 100%;
+    width: 50%;
+    border-style: solid;
+    border-color: black;
+    padding: 10px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.calculator > .output, .calculator > .buttons {
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+}
+
+.calculator > .output {
+    flex-grow: 1;
+}
+
+.calculator > .buttons {
+    flex-grow: 2;
+    display: flex;
+    flex-flow: row;
+    align-items: stretch;
+}
+
+.buttons > .numbers, .buttons > .operators {
+    border-style: solid;
+    border-color: black;
+    align-items: stretch;
+    margin: 10px;
+    padding: 10px;
+}
+
+.buttons > .numbers {
+    flex-grow: 6;
+    margin-right: 0px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+}
+
+.numbers > button {
+
+}
+
+.numbers > .num1-9 {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.num1-9 > button {
+    height: auto;
+    width: auto;
+}
+
+.numbers > .num0 {
+
+}
+
+.num0 > button {
+    width: 100%;
+    height: 100%;
+    margin: 5px 0px;
+}
+
+.buttons > .operators {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.operators > button {
+    height: 100%;
+}
