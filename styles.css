@@ -40,6 +40,12 @@ body {
 
 .calculator > .output {
     flex-grow: 1;
+    display: flex;
+}
+
+.output > p {
+    height: 100%;
+    width: 100%;
 }
 
 .calculator > .buttons {
@@ -65,9 +71,9 @@ body {
     gap: 10px;
 }
 
-.numbers > button {
+/* .numbers > button {
 
-}
+} */
 
 .numbers > .num1-9 {
     height: 100%;
@@ -81,9 +87,9 @@ body {
     width: auto;
 }
 
-.numbers > .num0 {
+/* .numbers > .num0 {
 
-}
+} */
 
 .num0 > button {
     width: 100%;
