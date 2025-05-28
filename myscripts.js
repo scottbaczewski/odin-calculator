@@ -1,7 +1,12 @@
 // output-buttons
-const output = document.querySelector('div.output');
+const output = document.querySelectorAll('div.output > p');
+const outputFirstVar = document.querySelector('p.outputFirstVar');
+const outputOperator = document.querySelector('p.outputOperator');
+const outputSecondVar = document.querySelector('p.outputSecondVar');
 const numberButtons = document.querySelector('div.numbers');
 const operatorButtons = document.querySelector('div.operators');
+const htmlOutputFirstVar = document.querySelector('p.outputFirstVar');
+
 
 // operation variables
 let firstVar = '';
@@ -15,10 +20,11 @@ numberButtons.addEventListener('click', event => {
         let value = target.textContent
         if (!operator) {
         firstVar += value;
+        outputFirstVar.textContent = firstVar;
     } else if (operator)
         secondVar += value;
+        outputSecondVar.textContent = secondVar;
 }
-    console.log(firstVar,secondVar);
 })
 
 operatorButtons.addEventListener('click', event => {
@@ -29,18 +35,19 @@ operatorButtons.addEventListener('click', event => {
             operator = '';
             secondVar = '';
             resultOutput = '';
+            output.forEach(element => {
+                element.textContent = '';
+            })
         } else if (target.textContent == '=') {
-            operate()
+            operate();
         } else {
-        let value = target.textContent
-        operator = value;
+            let value = target.textContent;
+            operator = value;
+            outputOperator.textContent = operator;
         }
     }
-    console.log(operator)
 })
 
-output.textContent = `${firstVar} ${operator} ${secondVar}\n${resultOutput}`;
-console.log(firstVar,operator,secondVar,resultOutput);
 // Math functions
 const operations = {
 "+": (a,b) => a + b,
@@ -53,9 +60,12 @@ const operations = {
 function operate() {
     if (operator && firstVar != 0 && secondVar !=0) {
         let op = operations[operator];
-        const result = op(firstVar,secondVar);
+        const result = op(Number(firstVar),Number(secondVar));
         resultOutput = result;
         firstVar = result;
-        console.log(result);
+        secondVar = '';
+        outputFirstVar.textContent = result;
+        outputOperator.textContent = '';
+        outputSecondVar.textContent = '';
     }
 }
