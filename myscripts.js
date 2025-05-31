@@ -13,14 +13,20 @@ let firstVar = '';
 let operator = '';
 let secondVar = '';
 let resultOutput = '';
+let operated = false;
 
 numberButtons.addEventListener('click', event => {
     let target = event.target;
     if (target.matches('button')) {
-        let value = target.textContent
-        if (!operator) {
+        let value = target.textContent;
+        if (!operator && !operated) {
         firstVar += value;
         outputFirstVar.textContent = firstVar;
+    }else if (!operator && operated) {
+        firstVar == '';
+        outputFirstVar.textContent == '';
+        firstVar += value;
+        outputFirstVar.textContent = firstVar;  
     } else if (operator)
         secondVar += value;
         outputSecondVar.textContent = secondVar;
@@ -37,6 +43,7 @@ operatorButtons.addEventListener('click', event => {
             resultOutput = '';
             output.forEach(element => {
                 element.textContent = '';
+            operated = false;
             })
         } else if (target.textContent == '=') {
             operate();
@@ -44,6 +51,7 @@ operatorButtons.addEventListener('click', event => {
             let value = target.textContent;
             operator = value;
             outputOperator.textContent = operator;
+            operated = true;
         }
     }
 })
@@ -58,13 +66,28 @@ const operations = {
 
 // result
 function operate() {
-    if (operator && firstVar != 0 && secondVar !=0) {
+    if (operator == '/' && secondVar == 0){
+        outputFirstVar.textContent = 'Hey! No dividing by 0!';
+        firstVar = '';
+        secondVar = '';
+        operator = '';
+        outputOperator.textContent = '';
+        outputSecondVar.textContent = '';
+    } else if (operator && firstVar && secondVar) {
         let op = operations[operator];
         const result = op(Number(firstVar),Number(secondVar));
-        resultOutput = result;
-        firstVar = result;
+        resultOutput = result.toFixed(2);
+        firstVar = result.toFixed(2);
         secondVar = '';
-        outputFirstVar.textContent = result;
+        operator = '';
+        outputFirstVar.textContent = result.toFixed(2);
+        outputOperator.textContent = '';
+        outputSecondVar.textContent = '';
+    } else {
+        outputFirstVar.textContent = 'Please enter firstVar, operator, and secondVar';
+        firstVar = '';
+        secondVar = '';
+        operator = '';
         outputOperator.textContent = '';
         outputSecondVar.textContent = '';
     }
