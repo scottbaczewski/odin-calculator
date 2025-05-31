@@ -23,8 +23,8 @@ numberButtons.addEventListener('click', event => {
         firstVar += value;
         outputFirstVar.textContent = firstVar;
     }else if (!operator && operated) {
-        firstVar == '';
-        outputFirstVar.textContent == '';
+        firstVar = '';
+        outputFirstVar.textContent = '';
         firstVar += value;
         outputFirstVar.textContent = firstVar;  
     } else if (operator)
@@ -47,11 +47,11 @@ operatorButtons.addEventListener('click', event => {
             })
         } else if (target.textContent == '=') {
             operate();
+            operated = true;
         } else {
             let value = target.textContent;
             operator = value;
             outputOperator.textContent = operator;
-            operated = true;
         }
     }
 })
@@ -76,11 +76,11 @@ function operate() {
     } else if (operator && firstVar && secondVar) {
         let op = operations[operator];
         const result = op(Number(firstVar),Number(secondVar));
-        resultOutput = result.toFixed(2);
-        firstVar = result.toFixed(2);
+        resultOutput = result;
+        firstVar = result;
         secondVar = '';
         operator = '';
-        outputFirstVar.textContent = result.toFixed(2);
+        outputFirstVar.textContent = result;
         outputOperator.textContent = '';
         outputSecondVar.textContent = '';
     } else {
